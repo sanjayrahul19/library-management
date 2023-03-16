@@ -2,7 +2,7 @@ import { updateSchema, User } from "../../model/user";
 import { responseHandler } from "../../response/responseHandler";
 import bcrypt from "bcrypt";
 
-export const userUpdate = async (req, res) => {
+export const resetPassword = async (req, res) => {
   try {
     const id = req.params.id;
     const { error, value } = updateSchema.validate(req.body);
@@ -14,18 +14,12 @@ export const userUpdate = async (req, res) => {
       const user = await User.findByIdAndUpdate(
         { _id: id },
         {
-          name: value.name,
-          email: value.email,
+          password: value.password,
+          confirmPassword: value.confirmPassword,
         },
         { new: true }
       );
-      return responseHandler(
-        res,
-        200,
-        "User details updated successfully",
-        true,
-        user
-      );
+      return responseHandler(res, 200, "Password updated successfully", true);
     }
   } catch (err) {
     return responseHandler(res, 500, err.message, false);

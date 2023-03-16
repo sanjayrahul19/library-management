@@ -11,8 +11,16 @@ export const remainingBooks = async (req, res) => {
         },
       ],
     }).select("name author journal");
-
-    return responseHandler(res, 200, "Book details sent successfully", book);
+    if (book === 0) {
+      return responseHandler(res, 400, "No Books", false);
+    }
+    return responseHandler(
+      res,
+      200,
+      "Book details sent successfully",
+      true,
+      book
+    );
   } catch (err) {
     return responseHandler(res, 500, err.message);
   }

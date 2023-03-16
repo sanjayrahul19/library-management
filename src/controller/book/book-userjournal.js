@@ -15,8 +15,10 @@ export const bookByUserJournal = async (req, res) => {
         if (books.length !== 0) {
           let num = 0;
           for (let j = 0; j < books.length; j++) {
-            if (books[j].journal === req.body.journal) {
+            if (books[j].journal === req.query.name) {
               num += 1;
+            } else {
+              return responseHandler(res, 400, "No  Books found", true);
             }
             if (books.length - 1 === j && num > 0) {
               book.push(user[i]);

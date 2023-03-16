@@ -6,6 +6,9 @@ export const bookNotReturned = async (req, res) => {
     const book = await Book.find({ returned: false }).select(
       "name author journal"
     );
+    if (book.length === 0) {
+      return responseHandler(res, 400, "No books", false);
+    }
     return responseHandler(
       res,
       200,

@@ -26,12 +26,26 @@ export const userSignUp = async (req, res) => {
           role: value.role,
           otp: otp,
         });
-        await user.save();
+        let users = await user.save();
+        // users.password = users.role = user.confirmPassword = users.otp = 0;
         const token = jwt.sign({ id: user._id, role: user.role }, "sanjay", {
           expiresIn: "1d",
         });
         mailer(value, otp);
-        return responseHandler(res, 200, "Mail sent successfully", true, token);
+        return responseHandler(
+          res,
+          200,
+          "Mail sent successfully",
+          true,
+          token,
+          {
+            name: users.name,
+            email: users.email,
+            _id: users._id,
+            verified: users.verified,
+            role: users.role,
+          }
+        );
       }
     }
   } catch (err) {

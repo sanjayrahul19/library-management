@@ -11,6 +11,7 @@ import { buyBooks } from "../../controller/user/user-buybooks";
 import { searchUser } from "../../controller/user/user-search";
 import { remainingBooks } from "../../controller/user/user-remainingbooks";
 import { getAllUser } from "../../controller/user/user-get";
+import { resetPassword } from "../../controller/user/user-resetpassword";
 
 userRouter.post("/signup", userSignUp);
 userRouter.patch("/verify", verifyToken, userVerify);
@@ -22,3 +23,4 @@ userRouter.delete("/delete/:id", deleteUser);
 userRouter.get("/search", searchUser);
 userRouter.get("/remainingbooks", remainingBooks);
 userRouter.get("/alluser", getAllUser);
+userRouter.patch("/resetpassword/:id", resetPassword);

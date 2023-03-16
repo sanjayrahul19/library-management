@@ -19,7 +19,13 @@ export const userLogin = async (req, res) => {
             200,
             "LoggedIn Successfully",
             true,
-            token
+            token,
+            {
+              name: user.name,
+              _id: user._id,
+              email: user.email,
+              role: user.role,
+            }
           );
         } else {
           return responseHandler(res, 401, "Incorrect password", false);
