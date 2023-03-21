@@ -1,6 +1,6 @@
 import { updateSchema, User } from "../../model/user";
 import { responseHandler } from "../../response/responseHandler";
-import bcrypt from "bcrypt";
+import { client } from "../../server";
 
 export const userUpdate = async (req, res) => {
   try {
@@ -9,8 +9,6 @@ export const userUpdate = async (req, res) => {
     if (error) {
       return responseHandler(res, 403, error.details[0].message, false);
     } else {
-      const hash = await bcrypt.hash(value.password, 10);
-      value.password = hash;
       const user = await User.findByIdAndUpdate(
         { _id: id },
         {
@@ -19,6 +17,7 @@ export const userUpdate = async (req, res) => {
         },
         { new: true }
       );
+      client.del("user");
       return responseHandler(
         res,
         200,

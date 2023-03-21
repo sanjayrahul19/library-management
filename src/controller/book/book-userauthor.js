@@ -12,15 +12,13 @@ export const bookByUserAuthor = async (req, res) => {
     if (user.length > 0) {
       for (let i = 0; i < user.length; i++) {
         const books = user[i].books;
-        console.log(books[0]);
-        console.log(books.length);
+        // console.log(books[0]);
+        // console.log(books.length);
         if (books.length !== 0) {
           let num = 0;
           for (let j = 0; j < books.length; j++) {
             if (books[j].author === name) {
               num += 1;
-            } else {
-              return responseHandler(res, 400, "No  Books found", true);
             }
             if (books.length - 1 === j && num > 0) {
               book.push(user[i]);

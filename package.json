@@ -25,9 +25,9 @@
     "joi": "^17.8.3",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.0.0",
-    "mongoose-find-by-reference": "^1.0.5",
     "node-cron": "^3.0.2",
-    "nodemailer": "^6.9.1"
+    "nodemailer": "^6.9.1",
+    "redis": "^4.6.5"
   },
   "devDependencies": {
     "jest": "^29.5.0",
