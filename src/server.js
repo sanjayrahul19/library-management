@@ -2,6 +2,7 @@ import express from "express";
 const app = express();
 const PORT = 8000;
 import { createClient } from "redis";
+import Redis from "ioredis";
 import { connectDB } from "./config/db";
 import { router } from "./router/router";
 
@@ -13,22 +14,26 @@ app.use("/", router);
 
 export let client;
 
-(async () => {
-  client = createClient();
+export const redis = new Redis();
 
-  client.on("error", (err) => {
-    console.log(err);
-  });
+// redis.config("SET", "maxmemory", 10);
 
-  await client.connect();
+redis.config("SET", "maxmemory-policy", "allkeys-lru");
 
-  const info = await client.info();
-  console.log(info.memory);
+// (async () => {
+//   client = createClient();
 
-  await client.config("set", "maxmemory", "10mb");
+//   client.on("error", (err) => {
+//     console.log(err);
+//   });
 
-  console.log("connected");
-})();
+//   await client.connect();
+
+//   const info = await client.info();
+//   // console.log(info);
+
+//   console.log("connected");
+// })();
 
 app.listen(PORT, () => {
   console.log("Server is up and running");

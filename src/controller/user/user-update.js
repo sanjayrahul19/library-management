@@ -1,6 +1,7 @@
 import { updateSchema, User } from "../../model/user";
 import { responseHandler } from "../../response/responseHandler";
 import { client } from "../../server";
+import { redis } from "../../server";
 
 export const userUpdate = async (req, res) => {
   try {
@@ -17,7 +18,7 @@ export const userUpdate = async (req, res) => {
         },
         { new: true }
       );
-      client.del("user");
+      redis.del("user");
       return responseHandler(
         res,
         200,
