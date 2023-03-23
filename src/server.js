@@ -12,7 +12,7 @@ connectDB();
 
 app.use("/", router);
 
-export let client;
+// export let client;
 
 export const redis = new Redis();
 

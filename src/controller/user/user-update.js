@@ -18,7 +18,7 @@ export const userUpdate = async (req, res) => {
         },
         { new: true }
       );
-      redis.del("user");
+      redis.del("user"); 
       return responseHandler(
         res,
         200,
