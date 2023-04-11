@@ -5,20 +5,26 @@ import { createClient } from "redis";
 import Redis from "ioredis";
 import { connectDB } from "./config/db";
 import { router } from "./router/router";
+const swaggerUi = require("swagger-ui-express");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 connectDB();
 
 app.use("/", router);
 
-// export let client;
+const outputFile = require("../src/swagger/swagger-output.json");
 
-export const redis = new Redis();
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(outputFile));
+
+// export const redis = new Redis();
 
 // redis.config("SET", "maxmemory", 10);
 
-redis.config("SET", "maxmemory-policy", "allkeys-lru");
+// redis.config("SET", "maxmemory-policy", "allkeys-lru");
+
+// export let client;
 
 // (async () => {
 //   client = createClient();

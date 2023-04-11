@@ -17,8 +17,9 @@ export const bookByUserAuthor = async (req, res) => {
         if (books.length !== 0) {
           let num = 0;
           for (let j = 0; j < books.length; j++) {
+            console.log(num, i);
             if (books[j].author === name) {
-              num += 1;
+              num++;
             }
             if (books.length - 1 === j && num > 0) {
               book.push(user[i]);

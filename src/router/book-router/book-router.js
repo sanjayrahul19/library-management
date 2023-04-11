@@ -18,7 +18,7 @@ import { bookReturnedOrNot } from "../../controller/book/book-returned-or-not";
 import { bookUserNotReturned } from "../../controller/book/book-user-not-returned";
 
 bookRouter.post("/create", role, permit(["admin"]), bookCreation);
-bookRouter.delete("/delete/:id", role, permit(["admin"]), bookDelete);
+bookRouter.delete("/delete", role, permit(["admin"]), bookDelete);
 bookRouter.patch("/update/:id", role, permit(["admin"]), bookUpdate);
 bookRouter.get("/get/:id", role, permit(["admin"]), bookOne);
 bookRouter.get("/author", role, permit(["admin"]), bookAuthor);

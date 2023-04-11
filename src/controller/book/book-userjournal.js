@@ -9,11 +9,11 @@ export const bookByUserJournal = async (req, res) => {
       journal: 1,
     });
     const book = [];
+    let num = 0;
     if (user.length > 0) {
       for (let i = 0; i < user.length; i++) {
         const books = user[i].books;
         if (books.length !== 0) {
-          let num = 0;
           for (let j = 0; j < books.length; j++) {
             if (books[j].journal === req.query.name) {
               num += 1;

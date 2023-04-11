@@ -6,6 +6,7 @@
   "scripts": {
     "test": "jest --runInBand --coverage --watchAll --detectOpenHandles",
     "build": "babel src -d lib",
+    "swagger": "node src/swagger/swagger.js",
     "start": "babel src -d lib && node lib/server.js",
     "server": "nodemon --exec babel-node src/server.js"
   },
@@ -29,10 +30,14 @@
     "mongoose": "^7.0.0",
     "node-cron": "^3.0.2",
     "nodemailer": "^6.9.1",
-    "redis": "^4.6.5"
+    "redis": "^4.6.5",
+    "run-rs": "^0.7.7",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^4.6.2"
   },
   "devDependencies": {
     "jest": "^29.5.0",
-    "supertest": "^6.3.3"
+    "supertest": "^6.3.3",
+    "swagger-autogen": "^2.23.1"
   }
 }
